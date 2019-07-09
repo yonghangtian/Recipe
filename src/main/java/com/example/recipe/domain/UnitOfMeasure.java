@@ -1,11 +1,14 @@
 package com.example.recipe.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
  * @author tianyh
  * created by tianyh on 6/12/19 10:16 PM
  */
+@Data
 @Entity
 public class UnitOfMeasure {
     @Id
@@ -13,21 +16,5 @@ public class UnitOfMeasure {
     private Long id;
 
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }

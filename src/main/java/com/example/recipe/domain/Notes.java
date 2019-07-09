@@ -1,11 +1,16 @@
 package com.example.recipe.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
 /**
  * @author tianyh
  * created by tianyh on 6/11/19 4:17 PM
  */
+@Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
     @Id
@@ -17,28 +22,4 @@ public class Notes {
 
     @Lob
     private String recipeNotes;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
-    }
 }
