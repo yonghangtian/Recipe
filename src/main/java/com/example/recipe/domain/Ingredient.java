@@ -2,6 +2,7 @@ package com.example.recipe.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
  * created by tianyh on 6/12/19 8:18 PM
  */
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
@@ -22,6 +24,7 @@ public class Ingredient {
 
     @ManyToOne
     private Recipe recipe;
+
     @OneToOne
     private UnitOfMeasure unitOfMeasure;
 
