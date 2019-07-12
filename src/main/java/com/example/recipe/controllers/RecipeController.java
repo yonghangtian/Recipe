@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author tianyh
  * created by tianyh on 6/14/19 3:18 PM
  */
 @Slf4j
