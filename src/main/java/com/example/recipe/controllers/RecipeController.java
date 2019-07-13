@@ -26,6 +26,6 @@ public class RecipeController {
 
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
 
-        return "show";
+        return "recipe/show";
     }
 }
