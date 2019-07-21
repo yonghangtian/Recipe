@@ -1,6 +1,9 @@
 package com.example.recipe.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,7 +14,9 @@ import java.util.Set;
  * @author tianyh
  * created by tianyh on 6/11/19 4:17 PM
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Recipe {
     @Id

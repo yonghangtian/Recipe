@@ -54,8 +54,8 @@
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.4.1</version>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7-1</version>
         </dependency>
     </dependencies>
 
