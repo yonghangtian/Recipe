@@ -1,5 +1,6 @@
 package com.example.recipe.service;
 
+import com.example.recipe.commands.RecipeCommand;
 import com.example.recipe.domain.Recipe;
 
 import java.util.Set;
@@ -11,4 +12,5 @@ import java.util.Set;
 public interface RecipeService {
     Set<Recipe> getRecipe();
     Recipe findById(Long id);
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
