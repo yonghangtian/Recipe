@@ -1,8 +1,6 @@
 package com.example.recipe.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,7 +9,8 @@ import java.math.BigDecimal;
  * @author tianyh
  * created by tianyh on 6/12/19 8:18 PM
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity

@@ -2,6 +2,7 @@ package com.example.recipe.controllers;
 
 import com.example.recipe.commands.IngredientCommand;
 import com.example.recipe.commands.RecipeCommand;
+import com.example.recipe.commands.UnitOfMeasureCommand;
 import com.example.recipe.service.IngredientService;
 import com.example.recipe.service.RecipeService;
 import com.example.recipe.service.UnitOfMeasureService;
@@ -57,6 +58,21 @@ public class IngredientController {
         model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
 
         return "recipe/ingredient/ingredientForm";
+    }
+
+    @RequestMapping(value = "/recipe/{recipeId}/ingredient/new", method = RequestMethod.GET)
+    public String createIngredient(@PathVariable String recipeId, Model model) {
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        // todo raise expection if null
+
+        IngredientCommand  ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(recipeCommand.getId());
+        ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+
+        model.addAttribute("ingredient", ingredientCommand);
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+
+        return  "recipe/ingredient/ingredientForm";
     }
 
     @PostMapping("recipe/{recipeId}/ingredient")
