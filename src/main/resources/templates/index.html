@@ -34,17 +34,23 @@
                                 <th>ID</th>
                                 <th>Description</th>
                                 <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
                                 <td>123</td>
                                 <td>Tasty Goodnees 1</td>
                                 <td><a href="#">View</a></td>
+                                <th><a href="#">Update</a></th>
+                                <th><a href="#">Delete</a></th>
                             </tr>
                             <tr th:remove="all">
                                 <td>12333</td>
                                 <td>Tasty Goodnees 2</td>
                                 <td><a href="#">View</a></td>
+                                <th><a href="#">Update</a></th>
+                                <th><a href="#">Delete</a></th>
                             </tr>
                             <!--/*@thymesVar id="recipe" type="com.example.recipe.domain.Recipe"*/-->
                             <tr th:each="recipe : ${recipes}">
