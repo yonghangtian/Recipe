@@ -7,6 +7,7 @@ import com.example.recipe.service.IngredientService;
 import com.example.recipe.service.RecipeService;
 import com.example.recipe.service.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -75,7 +76,7 @@ public class IngredientController {
         return  "recipe/ingredient/ingredientForm";
     }
 
-    @PostMapping("recipe/{recipeId}/ingredient")
+    @PostMapping("/recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand) {
         IngredientCommand savedIngredientCommand = ingredientService.saveIngredientCommand(ingredientCommand);
         log.debug("saved recipe id " + savedIngredientCommand.getRecipeId());
@@ -83,5 +84,14 @@ public class IngredientController {
 
         return "redirect:/recipe/" + savedIngredientCommand.getRecipeId() + "/ingredient/" +
                 savedIngredientCommand.getId() + "/show";
+    }
+
+    @RequestMapping(value = "/recipe/{recipeId}/ingredient/{ingredientId}/delete", method = RequestMethod.GET)
+    public String deleteIngredientById(@PathVariable String recipeId, @PathVariable String ingredientId, Model model) {
+
+        log.debug("Deleting ingredient id " + ingredientId + " of recipe id " + recipeId);
+        ingredientService.deleteByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(ingredientId));
+
+        return "redirect:/recipe/" + recipeId + "/ingredients";
     }
 }
