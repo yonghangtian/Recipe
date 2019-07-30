@@ -76,7 +76,7 @@ public class IngredientController {
         return  "recipe/ingredient/ingredientForm";
     }
 
-    @PostMapping("/recipe/{recipeId}/ingredient")
+    @RequestMapping(value = "/recipe/{recipeId}/ingredient", method = RequestMethod.POST)
     public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand) {
         IngredientCommand savedIngredientCommand = ingredientService.saveIngredientCommand(ingredientCommand);
         log.debug("saved recipe id " + savedIngredientCommand.getRecipeId());
