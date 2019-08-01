@@ -1,8 +1,10 @@
 package com.example.recipe.controllers;
 
+import com.example.recipe.commands.RecipeCommand;
 import com.example.recipe.service.ImageService;
 import com.example.recipe.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import sun.net.httpserver.HttpServerImpl;
+import sun.nio.ch.IOUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.PanelUI;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * created by tianyh on 7/30/19 3:48 PM
@@ -43,5 +52,23 @@ public class ImageController {
         imageService.saveImageFile(Long.valueOf(recipeId), file);
 
         return "redirect:/recipe/" + recipeId + "/show";
+    }
+
+    @RequestMapping(value = "/recipe/{recipeId}/recipeImage", method = RequestMethod.GET)
+    public void renderImageFromDB(@PathVariable String recipeId, HttpServletResponse response) throws IOException {
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+
+        if (recipeCommand.getImage() != null) {
+            byte[] byteArray = new byte[recipeCommand.getImage().length];
+            int i = 0;
+
+            for (Byte wrappedByte : recipeCommand.getImage()) {
+                byteArray[i++] = wrappedByte;
+            }
+
+            response.setContentType("image/ipeg");
+            InputStream is = new ByteArrayInputStream(byteArray);
+            IOUtils.copy(is, response.getOutputStream());
+        }
     }
 }
