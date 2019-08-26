@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @Controller
 public class RecipeController {
+
     private final RecipeService recipeService;
 
     public RecipeController(RecipeService recipeService) {
@@ -33,6 +34,7 @@ public class RecipeController {
 
     @RequestMapping(value = "/recipe/new", method = RequestMethod.GET)
     public String newRecipe(Model model) {
+
         model.addAttribute("recipe",new RecipeCommand());
 
         return "recipe/recipeForm";
@@ -40,12 +42,15 @@ public class RecipeController {
 
     @RequestMapping(value = "/recipe/{id}/update", method = RequestMethod.GET)
     public String updateRecipe(@PathVariable String id, Model model){
+
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+
         return "recipe/recipeForm";
     }
 
     @RequestMapping(value = "/recipe", method = RequestMethod.POST)
     public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand) {
+
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
 
         return "redirect:/recipe/" + savedCommand.getId()+"/show";
@@ -56,6 +61,7 @@ public class RecipeController {
     public String deleteById(@PathVariable String id, Model model) {
 
         log.debug("Deleting id: " + id);
+
         recipeService.deleteById(Long.valueOf(id));
 
         return "redirect:/";
@@ -65,11 +71,26 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFound(Exception exception) {
+
         log.error("Handling not found exception");
         log.error(exception.getMessage());
-        ModelAndView modelAndView = new ModelAndView();
 
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("404error");
+        modelAndView.addObject("exception", exception);
+
+        return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView handleNumberFormatException (Exception exception) {
+
+        log.error("Handle number format exception!");
+        log.error(exception.getMessage());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("400error");
         modelAndView.addObject("exception", exception);
 
         return modelAndView;
