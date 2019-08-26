@@ -1,11 +1,14 @@
 package com.example.recipe.controllers;
 
 import com.example.recipe.commands.RecipeCommand;
+import com.example.recipe.exceptions.NotFoundException;
 import com.example.recipe.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * created by tianyh on 6/14/19 3:18 PM
@@ -57,5 +60,18 @@ public class RecipeController {
 
         return "redirect:/";
 
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(Exception exception) {
+        log.error("Handling not found exception");
+        log.error(exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("404error");
+        modelAndView.addObject("exception", exception);
+
+        return modelAndView;
     }
 }
