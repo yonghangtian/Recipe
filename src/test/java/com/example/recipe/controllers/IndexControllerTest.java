@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -47,7 +46,7 @@ public class IndexControllerTest {
 
         mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("door"));
     }
     
     @Test
@@ -69,7 +68,7 @@ public class IndexControllerTest {
 
         verify(recipeService,times(1)).getRecipe();
         verify(model,times(1)).addAttribute(eq("recipes"),argumentCaptor.capture());
-        assertEquals("index",targetString);
+        assertEquals("door",targetString);
 
         assertEquals(2,argumentCaptor.getValue().size());
     }
