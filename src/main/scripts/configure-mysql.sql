@@ -4,6 +4,7 @@
 #  mysql -h 172.17.0.2 -P 3306 -u root -p
 #
 # connect to mysql and run as root user
+# mysql -h 127.0.0.1 -P 3306 -u root -ptian
 #Create Databases
 CREATE DATABASE recipe_dev;
 CREATE DATABASE recipe_prod;
