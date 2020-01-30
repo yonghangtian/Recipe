@@ -5,6 +5,10 @@
 #
 # connect to mysql and run as root user
 # mysql -h 127.0.0.1 -P 3306 -u root -ptian
+# connect to mysql and run as dev user:
+# mysql -h 127.0.0.1 -P 3306 -u dev_user -ptian
+# connect to mysql and run as prod user:
+# mysql -h 127.0.0.1 -P 3306 -u prod_user -ptian
 #Create Databases
 CREATE DATABASE recipe_dev;
 CREATE DATABASE recipe_prod;
