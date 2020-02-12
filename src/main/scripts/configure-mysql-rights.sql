@@ -27,3 +27,15 @@ GRANT SELECT ON recipe_prod.* to 'prod_user'@'localhost';
 GRANT INSERT ON recipe_prod.* to 'prod_user'@'localhost';
 GRANT DELETE ON recipe_prod.* to 'prod_user'@'localhost';
 GRANT UPDATE ON recipe_prod.* to 'prod_user'@'localhost';
+
+
+GRANT CREATE ON recipe_dev.* to 'dev_user'@'localhost';
+GRANT ALTER ON recipe_dev.* to 'dev_user'@'localhost';
+GRANT references ON recipe_dev.* to 'dev_user'@'localhost';
+GRANT drop ON recipe_dev.* to 'dev_user'@'localhost';
+
+
+GRANT CREATE ON recipe_prod.* to 'prod_user'@'localhost';
+GRANT ALTER ON recipe_prod.* to 'prod_user'@'localhost';
+GRANT references ON recipe_prod.* to 'prod_user'@'localhost';
+GRANT drop ON recipe_prod.* to 'prod_user'@'localhost';

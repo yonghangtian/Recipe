@@ -5,6 +5,7 @@ import com.example.recipe.repositories.CategoryRepository;
 import com.example.recipe.repositories.RecipeRepository;
 import com.example.recipe.repositories.UnitOfMeasureRepository;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  * created by tianyh on 6/14/19 4:02 PM
  */
 @Component
+@Profile({"default"})
 public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
@@ -34,6 +36,7 @@ public class RecipeBootStrap implements ApplicationListener<ContextRefreshedEven
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         // how to save all? Where is the implementation of this method?
         recipeRepository.saveAll(getRecipe());
+        System.out.println("Loading bootstrap data!");
     }
 
     private List<Recipe> getRecipe(){

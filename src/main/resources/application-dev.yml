@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/recipe_dev
+    username: dev_user
+    password: tian
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+
+# below is a way to show the schema of H2 db into a file.(only if we enable h2 in property.)
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: guru_database_create.sql
