@@ -44,5 +44,5 @@ jobs:
           path: target/surefire-reports
 
       - run:
-          name: Send to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
+          name: Send reports to Codecov
+          command: bash < (curl "{$(echo ~/target/surefire-reports/*.txt | tr ' ' ',')}" https://codecov.io/bash)
