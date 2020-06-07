@@ -11,6 +11,8 @@ spring:
     database: mysql
     show-sql: true
 
+server:
+  port: 8081
 # below is a way to show the schema of H2 db into a file.(only if we enable h2 in property.)
 #    properties:
 #      javax:
